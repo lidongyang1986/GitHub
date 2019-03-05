@@ -1,0 +1,53 @@
+http://fpgacpu.ca/fpga/index.html
+
+
+https://www.edaplayground.com/playgrounds/user/94940?searchString=%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E8%8C%83%E4%BE%8B&language=&simulator=&methodologies=&_libraries=on&_easierUVM=on&_curated=on&_csrf=b4a93985-99bd-4587-8210-3a37c0f1388d
+
+基本电路设计范例12——格雷码Gray_code
+https://www.fpga4fun.com/Counters2.html
+
+基本电路设计范例11——CDC_signal自己测试？
+https://www.fpga4fun.com/CrossClockDomain.html
+
+基本电路设计范例11——CDC_signal
+https://www.fpga4fun.com/CrossClockDomain.html
+
+基本电路设计范例10——按键去抖电路
+https://www.fpga4fun.com/Debouncer2.html
+
+基本电路设计范例8——pulse_延迟和判断
+http://fpgacpu.ca/fpga/pulse_level.html
+
+
+基本电路设计范例7——reset延迟几个周期
+http://fpgacpu.ca/fpga/master_reset.html
+
+
+基本电路设计范例6——Mux设计
+https://www.chipverify.com/verilog/verilog-4to1-mux
+
+
+基本电路设计范例5——双口RAM(同时写入两个口)
+http://fpgacpu.ca/fpga/bram.html
+
+
+基本电路设计范例5——双口RAM_simple
+http://fpgacpu.ca/fpga/bram.html
+
+
+基本电路设计范例3——Memory-Mapping Address Translation
+http://fpgacpu.ca/fpga/translation.html
+
+
+基本电路设计范例2——Round Robin Arbitor
+http://fpgacpu.ca/fpga/roundrobin.html
+
+
+基本电路设计范例1——优先标识priority mask
+http://fpgacpu.ca/fpga/thermometer.html
+
+基本电路设计范例0——优先仲裁器priority arbiter
+http://fpgacpu.ca/fpga/priority.html
+
+
+

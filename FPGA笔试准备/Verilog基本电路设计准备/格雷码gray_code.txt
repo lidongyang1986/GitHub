@@ -1,0 +1,31 @@
+/*
+0000
+0001
+0011
+0010
+0110
+0111
+0101
+0100
+1100
+1101
+1111
+1110
+1010
+1011
+1001
+1000
+*/
+
+
+
+module GrayCounter(
+  input clk,
+  output [3:0] cnt_gray
+);
+
+reg [3:0] cnt = 0;
+always @(posedge clk) cnt <= cnt+1;  // 4bit binary counter
+
+assign cnt_gray = cnt ^ cnt[3:1];  // then convert to gray
+endmodule

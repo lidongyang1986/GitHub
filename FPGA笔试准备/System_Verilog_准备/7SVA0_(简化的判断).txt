@@ -1,0 +1,18 @@
+
+https://www.edaplayground.com/x/2Urv
+
+
+module dffChecker (clk, rst_, d, q);
+parameter WIDTH = 8;
+input clk, rst_;
+  
+input [WIDTH-1:0] d, q;
+  
+logic [3:0] delay,a,b;
+
+property assert_check;
+  @(posedge clk) disable iff(rst_)
+  $rose(a) |-> ##(delay) b == 1;
+endproperty : assert_check
+  
+  endmodule

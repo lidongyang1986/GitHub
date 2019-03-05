@@ -1,0 +1,21 @@
+https://www.edaplayground.com/x/43nu
+
+module foo(output cout);
+   parameter Width   =32;
+   parameter Number  =10;
+  
+   wire  [Width-1:0] a [Number-1:0];
+   wire  [Width-1:0] c [Number  :0];
+  
+   assign c[0]=0;
+  
+   genvar 	i;
+   generate
+     for(i = 0; i < Number; i = i + 1)
+         begin : loop_body
+           assign c[i+1]=c[i]|a[i];
+         end
+   endgenerate
+  
+  assign cout = c[Number];
+endmodule

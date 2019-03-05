@@ -1,0 +1,150 @@
+Verilog:	fpga4student.com
+
+1. 分频（时钟）http://referencedesigner.com/tutorials/verilogexamples/verilog_ex_03.php
+https://www.fpga4student.com/2017/08/verilog-code-for-clock-divider-on-fpga.html
+3分频：
+5分频：
+半分频：
+https://www.edaplayground.com/playgrounds/user/94940?searchString=clock&language=&simulator=&methodologies=&_libraries=on&_easierUVM=on&_curated=on&_csrf=a898ad2a-25fd-43cc-b2e7-db0679006494
+https://blog.csdn.net/moon9999/article/details/75020355/
+
+2. 电梯：https://www.edaplayground.com/x/6HjN
+
+3. 交通灯	（红绿灯）：
+https://www.fpga4student.com/2016/11/verilog-code-for-traffic-light-system.html
+https://www.edaplayground.com/x/3Mie
+
+4. 时钟约束（两个时钟，samsung AI题）
+set constrain group/set clock group
+
+5. FSM状态机判断1011序列
+
+6. 时钟相位约束
+
+7. 车库：
+https://www.fpga4student.com/2016/11/verilog-code-for-parking-system-using.html
+
+8. FIFO/RAM：
+
+
+9. Matrix multiplication:
+
+
+10. timer
+
+
+11. Pipeline
+/////////////////////
+? always @(posedge clk) 
+? begin 
+?      e <= a+b+c; 
+?      if(e ==d) 
+?      ………….. ? end
+////////////////////
+
+Setup violation: 降时钟频率
+Hold violation: 加线路path延迟
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+System Verilog:
+1. testcase基本
+2. SVA：			https://www.edaplayground.com/playgrounds/user/94940?searchString=sva&language=&simulator=&methodologies=&_libraries=on&_easierUVM=on&_curated=on&_csrf=c53b5ef5-18b8-4b3a-9936-1491e77bbb92
+3. Randomize		https://www.edaplayground.com/playgrounds/user/94940?searchString=random&language=&simulator=&methodologies=&_libraries=on&_easierUVM=on&_curated=on&_csrf=c53b5ef5-18b8-4b3a-9936-1491e77bbb92
+4. 接口类
+5. clocking block
+
+
+6. parallel and full case	https://asic-interview.blogspot.com/2010/04/systemverilog-interview-question-5.html
+FULL：
+SystemVerilog use priority modified case statement to solve the full case problem:
+e.g.
+priority case (...)
+...
+endcase
+
+PARALLEL：
+The unique keyword shall cause the simulator to report a run-time error if a case expression is ever found to match more than one of the case items. In essence, the unique
+case statement is a "safe" parallel_case case statement.
+
+unique case (...)
+...
+default: ...
+endcase
+
+
+7. code coverage
+
+
+
+seq1[$];   --> Queue
+seq1[*];   --> associate array：		int array_name [ some_Class ];// Class index 
+seq1[N];    -->array
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------
+FPGA资源：
+LUT: look up table
+FF:   Flip-flop
+LE:   logic element
+
+https://blog.csdn.net/maxwell2ic/article/details/81116271
+Slice是Xilinx公司定义的基本逻辑单位，其内部结构如图1-4所示，一个Slice由两个4输入的函数、进位 逻辑、算术逻辑、存储逻辑和函数复用器组成。算术逻辑包括一个异或门（XORG）和一个专用与门（MULTAND），一个异或门可以使一个Slice实现 2bit全加操作，专用与门用于提高乘法器的效率；进位逻辑由专用进位信号和函数复用器（MUXC）组成，用于实现快速的算术加减法操作；4输入函数发生 器用于实现4输入LUT、分布式RAM或16比特移位寄存器（Virtex-5系列芯片的Slice中的两个输入函数为6输入，可以实现6输入LUT或 64比特移位寄存器）；进位逻辑包括两条快速进位链，用于提高CLB模块的处理速度
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------
+VCS编译命令：
+vcs -sverilog <system verilog filename> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

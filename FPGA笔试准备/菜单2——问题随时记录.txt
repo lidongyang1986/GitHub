@@ -1,0 +1,28 @@
+http://fpgacpu.ca/fpga/index.html
+
+
+1. setup and hold violation 解决方法
+Setup violation: 降时钟频率
+Hold violation: 加线路path延迟
+
+
+
+2. round robin
+3. 提前进位加法器
+
+
+
+4. SPI, IIC, monter
+
+https://www.cnblogs.com/bixiaopengblog/p/7469536.html
+IIC
+Uses only 2 wires (named "SDA" and "SCL") in addition to power and ground
+Can support over 100 devices on the same bus (each device on the bus has an address to be individually accessible)
+
+
+5. verilog做平方，乘法，开方运算
+
+6. AXI-bus协议
+
+7. motor server
+https://www.fpga4fun.com/RCServos.html

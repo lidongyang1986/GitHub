@@ -1,0 +1,61 @@
+https://www.quora.com/How-can-I-make-a-pipeline-structure-using-Verilog
+
+which has 3 blocks connected back to back in following fashion
+H/W unit for Fetching from Memory.
+Instruction decoder .
+Execution w.r.t to instruction.
+Now your pseudo-code in verilog for pipeline is as follows
+
+
+always @(posedge clk) begin
+// Do some operation on inputs.
+opcode_block1 <= Module input signal1 from memory.
+Data1_block1 <= Module input signal2 from memory.
+Data2_block1 <= Module input signal 3 from Memory.
+end
+
+
+//Now for Instruction decoder Block takes input from Block1 .
+always @(posedge clk) begin
+IR1_opcode = opcode_block1;
+IR2_Data1 = Data1_block1;
+IR3_Data2 = Data2_block1;
+end
+
+
+//Now above outputs will go to Execution Block.
+always @(posedge clk) begin
+case(IR1_opcode)
+2¡äb00: begin
+output1 = IR1_Data1+ IR_Data2;
+end
+2¡äb01: begin
+output1 = IR1_Data1- IR_Data2;
+end
+2¡äb10: begin
+output1 = IR1_Data1* IR_Data2;
+end
+2¡äb11: begin
+output1 = IR1_Data1/IR_Data2;
+end
+endcase
+end
+
+
+
+//////////////////////////////////
+pipeline pp1(.clk(clk), .input(input[0]), .output(output[0]));
+pipeline pp2(.clk(clk), .input(output[0]), .output(output[1]));
+pipeline pp2(.clk(clk), .input(output[1]), .output(output[2]));
+
+
+
+
+
+//////////////////////////////////
+
+? always @(posedge clk) 
+? begin 
+?      e <= a+b+c; 
+?      if(e ==d) 
+?      ¡­¡­¡­¡­.. ? end

@@ -1,0 +1,63 @@
+1. hold violation 怎么解决，setup violation
+
+2. 100MHz 两边都是，要不加FIFO
+
+3. FIFO的depth计算
+
+4. A module ----module ------ B module
+	1,2,3,4		1,2,3,4
+	1,2,3,4		3,0,1,2
+
+用FIFO和comparator加RAM存着index, 和FIFO的输出做着比较
+
+5. arbitor
+
+A：highest
+B:   Round Robin
+C:   Round Robin
+
+用sequencial logic
+
+always@(posedeg clk)begin
+	if(A)	out<=a;
+	else if(B | C)	begin
+
+		case(B,C)
+		01: out<=c;
+		10: out<=b;
+		11: begin
+			if(flag)	out<=b;	flag<=0;
+			else   	out<=c;	flag<=1;
+		       end
+	else
+		out<=x;
+end
+
+
+always@(posedeg clk)begin
+	casex(a,b,c)
+	1xx:	out<=a;
+	default:	
+		case(B,C)
+		00: out<=x;
+		01: out<=c;
+		10: out<=b;
+		11: begin
+			if(flag)	out<=b;	flag<=0;
+			else   	out<=c;	flag<=1;
+		       end
+end
+
+
+6. 多级的MUX
+
+A	   MUX
+B    delay
+
+C		MUX
+
+D			MUX
+
+MUX_sel(AB)
+MUX_sel(BC)
+MUX_sel(CD)

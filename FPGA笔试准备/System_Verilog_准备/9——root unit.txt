@@ -1,0 +1,32 @@
+https://www.edaplayground.com/x/3vEg
+
+
+string name = "Sagar";
+
+
+
+module mod();
+
+  string name = "SSS";
+
+
+
+  task print();
+
+    $display( { "You've got 1 ", $unit::name, "!" } );
+
+    $display( { "I've got 1 ", name, "!" } );
+
+    $display( { "I've got 2 ", $root.mod.name, "!" } );
+
+  endtask : print
+
+  
+
+  initial begin
+
+    print();
+
+  end
+
+endmodule

@@ -1,0 +1,27 @@
+1. 加法电路太大： 
+always@(posedge clk)
+c[31:0]=a[31:0]+b[31:0];
+
+改成：
+assign c[16:0]=a[15:0]+b[15:0];
+
+always@(posedge clk)
+d[32:16]=a[32:16]+b[32:16];
+c={c[32:16]+c[16], c[15:0]};
+
+
+2. 异步fifo:
+full是wrclk
+empty是rdclk
+
+always@(posedge clk)
+full=(wrcnt[3]^rdcnt[3])&(wrcnt[2:0]==rdcnt[2:0]);
+
+两个问题，
+1. gray code
+2. full要提前一个周期避免写满
+
+
+3. ILA实际操作
+xcl文件database
+

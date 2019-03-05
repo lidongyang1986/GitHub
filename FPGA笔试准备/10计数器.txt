@@ -1,0 +1,5 @@
+always@(posedge clk)begin
+	if(rst)cnt<=0;
+	else if(enable)cnt<=cnt+1;
+	else cnt<=cnt;
+end
