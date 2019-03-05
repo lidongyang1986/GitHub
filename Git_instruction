@@ -1,0 +1,17 @@
+How to use git:
+
+git clone https://github.com/lidongyang1986/GitHub.git
+
+git status
+
+git add -A
+
+git commit -m "git_change_record"
+
+git push
+
+
+
+
+
+
