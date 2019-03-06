@@ -1,0 +1,188 @@
+http://www.cnblogs.com/CSLegend/p/4412950.html
+
+booth算法其实就是一种位操作，直接上例子
+bit[1]bit[2]位操作
+   0   0      无操作
+   0   1    +被乘数
+   1   0    -被乘数
+   1   1      无操作
+例如4*2 被乘数为4（0100），乘数为2（0010），都为4bit，因此result应有9bit空间。
+第一步：被乘数正数：0100 负数为：1100，result={4’d0,0010,0}
+第二步：判断result[1:0] ,为00 则无操作，result向右移一位，补高位与原来高位一致为result={4’d0,0001，0}
+第三步：判断result[1:0],为10则减被乘数，result[9:6]+4’b1100={1100,0001,0}，result向右移一位，高位补1，result={1110,0000,1}
+第四步：判断result[1:0],为01则加被乘数，result[9:6]+4’b0100={0010,0000,1}，result向右移一位，高位补0，result={0001,0000,0}
+第五步：判断result[1:0],为00则无操作，result向右移一位，高位补0，result={0000,0001,0}
+第六步：最后结果取result[9:1]={0000,1000}=8;
+
+
+//-----------------------------------------------------------------------------
+// Title         : <title>
+// Project       : <project>
+//-----------------------------------------------------------------------------
+// File          : multiplier.v
+// Author        : caoshan
+// Created       : <credate>
+// Last modified : <moddate>
+//-----------------------------------------------------------------------------
+// Description :
+// <description>
+//-----------------------------------------------------------------------------
+// Copyright (c) <copydate> by <company> This model is the confidential and
+// proprietary property of <company> and the possession or use of this
+// file requires a written license from <company>.
+//------------------------------------------------------------------------------
+// Modification history :
+// <modhist>
+//-----------------------------------------------------------------------------
+module multiplier(/*autoarg*/
+   // Outputs
+   done_flag, mul_result,
+   // Inputs
+   clk, rst_n, start_en, mul_cand_data, mul_data
+   );
+  // parameter  WIDTH = 8;
+   
+   //system interface
+   input             clk;
+   input             rst_n;
+   
+   input             start_en;
+   input [7:0] mul_cand_data;
+   input [7:0] mul_data;
+
+   output            done_flag;
+   output [15:0] mul_result;
+   
+   
+
+   /*autoinput*/
+   /*autooutput*/
+   /*autoreg*/
+   // Beginning of automatic regs (for this module's undeclared outputs)
+   reg                  done_flag;
+   //reg [2*WIDTH-1:0]    mul_result;
+   // End of automatics
+   /*autowire*/
+   //===========================================================
+   // state machine
+   //=======================================================
+   parameter      IDLE = 3'd0;
+   parameter      LOCK_DATA = 3'd1;
+   parameter      IMPROVE_MC = 3'd2;
+   parameter      IMPROVE_M = 3'd3;
+   parameter      JUDGE  = 3'd4;
+   parameter      MUL_MOV = 3'd5;
+   parameter      MUL_END = 3'd6;
+
+   reg [2:0]            curr_state;
+   reg [2:0]            next_state;
+   reg [7:0]      mul_cand_data_ff1;
+   reg [7:0]      mul_cand_data_ff2;
+   reg [7:0]     mul_data_ff;
+   reg [16:0]      mul_result_ff;
+   reg [7:0]      cnt;
+
+ 
+   
+   always @ (posedge clk or negedge rst_n)begin
+      if(rst_n == 0)
+        curr_state <= IDLE;
+      else
+        curr_state <= next_state;
+   end
+
+   always @ (*)begin
+      next_state = IDLE;
+      case(curr_state)
+        IDLE:begin
+           if(start_en)
+             next_state = LOCK_DATA;
+           else
+             next_state = IDLE;
+        end
+    LOCK_DATA:begin
+       next_state = IMPROVE_MC;
+    end
+    
+        IMPROVE_MC:begin
+           next_state = IMPROVE_M;
+        end
+    IMPROVE_M:begin
+       next_state = JUDGE;
+    end
+        JUDGE:begin
+             next_state = MUL_MOV;
+        end
+        MUL_MOV:begin
+           if(cnt >= 7)
+             next_state = MUL_END;
+           else
+             next_state = JUDGE;
+        end
+        MUL_END:begin
+           next_state = IDLE;
+        end
+        default: next_state = IDLE;
+      endcase // case (curr_state)
+   end // always @ (*)
+   //-------------------------------------
+   //state machine change
+   always@(posedge clk or negedge rst_n)begin
+      if(rst_n==0)begin
+         mul_cand_data_ff1 <= 0;
+         mul_cand_data_ff2 <= 0;
+     mul_data_ff <= 0;
+      end
+      
+      else if(curr_state == IMPROVE_MC)begin
+         mul_cand_data_ff1 <= mul_cand_data;
+         mul_cand_data_ff2 <= ~mul_cand_data + 1'b1;
+     mul_data_ff <= mul_data;
+     
+      end
+   end
+
+   always @ (posedge clk or negedge rst_n)begin
+      if(rst_n == 0)
+        mul_result_ff <= 0;
+      else if(curr_state == IMPROVE_M)
+        mul_result_ff <= {8'd0,mul_data_ff,1'b0};
+      else if(curr_state == JUDGE)begin
+         if(mul_result_ff[1:0]==2'b01)
+           mul_result_ff <= {(mul_result_ff[16:9] + mul_cand_data_ff1[7:0]),mul_result_ff[8:0]};
+         else if(mul_result_ff[1:0]== 2'b10)
+           mul_result_ff <= {(mul_result_ff[16:9] + mul_cand_data_ff2[7:0]),mul_result_ff[8:0]};
+      end
+      else if(curr_state == MUL_MOV)
+        mul_result_ff <= {mul_result_ff[16],mul_result_ff[16:1]};
+   end // always @ (posedge clk or negedge rst_n)
+
+   always @ (posedge clk or negedge rst_n)begin
+      if(rst_n == 0)
+        cnt <= 0;
+      else if((curr_state == MUL_MOV)&&(cnt < 7))
+        cnt <= cnt + 1'b1;
+      else if((cnt >=7 )&&(curr_state == MUL_END))
+        cnt <= 0;
+   end
+
+   always@(posedge clk or negedge rst_n)begin
+      if(rst_n == 0)
+        done_flag <= 0;
+      else if(curr_state == MUL_END)
+        done_flag <= 1;
+      else
+        done_flag <= 0;
+   end
+   reg[16:0] mul_result_ff2;
+   always @ (posedge clk or negedge rst_n)begin
+      if(rst_n == 0)
+        mul_result_ff2 <= 0;
+      else if(curr_state == MUL_END)
+        mul_result_ff2 <= mul_result_ff;
+   end
+   
+   
+   assign mul_result = mul_result_ff2[16:1];
+          
+   endmodule //
