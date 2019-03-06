@@ -1,0 +1,7 @@
+after build the SPDK
+
+1. mkfs /dev/nvme0n1
+2. reboot
+3. ./scripts/setup.sh 
+4. ./example/hello_world/hello_world.sh 
+
