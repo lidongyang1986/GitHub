@@ -1,0 +1,4 @@
+chmod +x 010_randomread_4k_iops_FOB.sh
+
+./010_randomread_4k_iops_FOB.sh
+
