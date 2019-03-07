@@ -1,0 +1,30 @@
+SPDK github follow steps:
+1.git 
+git clone https://github.com/spdk/spdk
+cd spdk
+git submodule update --init
+
+2.dependent
+./scripts/pkgdep.sh
+
+3.
+./configure
+make
+./test/unit/unittest.sh
+
+
+after build the SPDK
+
+1. mkfs /dev/nvme0n1
+2. reboot
+3. ./scripts/setup.sh 
+4. ./example/hello_world/hello_world.sh 
+
+
+Use FIO to test:
+https://github.com/spdk/spdk/tree/master/examples/nvme/fio_plugin
+1. cd spdk
+2. ./configure --with-fio=/home/lidongyang/Desktop/fio-master/
+3. make
+4. spdk fio useable
+
