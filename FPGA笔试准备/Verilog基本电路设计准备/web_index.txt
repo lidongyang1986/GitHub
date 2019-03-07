@@ -1,52 +1,52 @@
 http://fpgacpu.ca/fpga/index.html
-
+https://www.fpga4fun.com
 
 https://www.edaplayground.com/playgrounds/user/94940?searchString=%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E8%8C%83%E4%BE%8B&language=&simulator=&methodologies=&_libraries=on&_easierUVM=on&_curated=on&_csrf=b4a93985-99bd-4587-8210-3a37c0f1388d
 
-»ù±¾µçÂ·Éè¼Æ·¶Àı12¡ª¡ª¸ñÀ×ÂëGray_code
+åŸºæœ¬ç”µè·¯è®¾è®¡èŒƒä¾‹12â€”â€”æ ¼é›·ç Gray_code
 https://www.fpga4fun.com/Counters2.html
 
-»ù±¾µçÂ·Éè¼Æ·¶Àı11¡ª¡ªCDC_signal×Ô¼º²âÊÔ£¿
+åŸºæœ¬ç”µè·¯è®¾è®¡èŒƒä¾‹11â€”â€”CDC_signalè‡ªå·±æµ‹è¯•ï¼Ÿ
 https://www.fpga4fun.com/CrossClockDomain.html
 
-»ù±¾µçÂ·Éè¼Æ·¶Àı11¡ª¡ªCDC_signal
+åŸºæœ¬ç”µè·¯è®¾è®¡èŒƒä¾‹11â€”â€”CDC_signal
 https://www.fpga4fun.com/CrossClockDomain.html
 
-»ù±¾µçÂ·Éè¼Æ·¶Àı10¡ª¡ª°´¼üÈ¥¶¶µçÂ·
+åŸºæœ¬ç”µè·¯è®¾è®¡èŒƒä¾‹10â€”â€”æŒ‰é”®å»æŠ–ç”µè·¯
 https://www.fpga4fun.com/Debouncer2.html
 
-»ù±¾µçÂ·Éè¼Æ·¶Àı8¡ª¡ªpulse_ÑÓ³ÙºÍÅĞ¶Ï
+åŸºæœ¬ç”µè·¯è®¾è®¡èŒƒä¾‹8â€”â€”pulse_å»¶è¿Ÿå’Œåˆ¤æ–­
 http://fpgacpu.ca/fpga/pulse_level.html
 
 
-»ù±¾µçÂ·Éè¼Æ·¶Àı7¡ª¡ªresetÑÓ³Ù¼¸¸öÖÜÆÚ
+åŸºæœ¬ç”µè·¯è®¾è®¡èŒƒä¾‹7â€”â€”resetå»¶è¿Ÿå‡ ä¸ªå‘¨æœŸ
 http://fpgacpu.ca/fpga/master_reset.html
 
 
-»ù±¾µçÂ·Éè¼Æ·¶Àı6¡ª¡ªMuxÉè¼Æ
+åŸºæœ¬ç”µè·¯è®¾è®¡èŒƒä¾‹6â€”â€”Muxè®¾è®¡
 https://www.chipverify.com/verilog/verilog-4to1-mux
 
 
-»ù±¾µçÂ·Éè¼Æ·¶Àı5¡ª¡ªË«¿ÚRAM(Í¬Ê±Ğ´ÈëÁ½¸ö¿Ú)
+åŸºæœ¬ç”µè·¯è®¾è®¡èŒƒä¾‹5â€”â€”åŒå£RAM(åŒæ—¶å†™å…¥ä¸¤ä¸ªå£)
 http://fpgacpu.ca/fpga/bram.html
 
 
-»ù±¾µçÂ·Éè¼Æ·¶Àı5¡ª¡ªË«¿ÚRAM_simple
+åŸºæœ¬ç”µè·¯è®¾è®¡èŒƒä¾‹5â€”â€”åŒå£RAM_simple
 http://fpgacpu.ca/fpga/bram.html
 
 
-»ù±¾µçÂ·Éè¼Æ·¶Àı3¡ª¡ªMemory-Mapping Address Translation
+åŸºæœ¬ç”µè·¯è®¾è®¡èŒƒä¾‹3â€”â€”Memory-Mapping Address Translation
 http://fpgacpu.ca/fpga/translation.html
 
 
-»ù±¾µçÂ·Éè¼Æ·¶Àı2¡ª¡ªRound Robin Arbitor
+åŸºæœ¬ç”µè·¯è®¾è®¡èŒƒä¾‹2â€”â€”Round Robin Arbitor
 http://fpgacpu.ca/fpga/roundrobin.html
 
 
-»ù±¾µçÂ·Éè¼Æ·¶Àı1¡ª¡ªÓÅÏÈ±êÊ¶priority mask
+åŸºæœ¬ç”µè·¯è®¾è®¡èŒƒä¾‹1â€”â€”ä¼˜å…ˆæ ‡è¯†priority mask
 http://fpgacpu.ca/fpga/thermometer.html
 
-»ù±¾µçÂ·Éè¼Æ·¶Àı0¡ª¡ªÓÅÏÈÖÙ²ÃÆ÷priority arbiter
+åŸºæœ¬ç”µè·¯è®¾è®¡èŒƒä¾‹0â€”â€”ä¼˜å…ˆä»²è£å™¨priority arbiter
 http://fpgacpu.ca/fpga/priority.html
 
 
