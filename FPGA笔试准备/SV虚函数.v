@@ -31,7 +31,7 @@ module top;
       class_a a;
       class_b b;
 
-      b = new;		//�������new֮��ֵ�����࣬�����ɷ�����
+      b = new;		//子类可以new之后赋值给父类，但不可反过来
       a = b;
       a.print();
       b.print();
@@ -61,9 +61,9 @@ module top;
       class_b b;
       class_b b2;
       
-      //a = new;		//�����Ǵ��ģ����಻��ǿ�и�ֵ������
+      //a = new;		//反向是错的，父类不能强行赋值给子类
       //b = a;
-      //a.print();		//û��newֱ�Ӵ�ӡҲ����
+      //a.print();		//没有new直接打印也不行
       //b.print();
     end     
     
