@@ -1,0 +1,109 @@
+//+++++++++++++++++++++++++++++++++++++++++++++++++
+//   DUT With assertions
+//+++++++++++++++++++++++++++++++++++++++++++++++++
+module repetition_assertion();
+
+logic clk = 0;
+always #1 clk ++;
+
+logic req,busy,gnt;
+logic a=0,b=0,c=0;
+//=================================================
+// Sequence Layer
+//=================================================
+sequence boring_way_seq;
+  req ##1 busy ##1 busy ##1 gnt;
+endsequence
+
+sequence cool_way_seq;
+  //req ##1 ~req;
+  //req |=> ~req;		//sequence is wrong with |->
+  req ##1 busy [*2] ##1 gnt & req;
+endsequence
+
+sequence range_seq;
+  //@ (posedge clk) 
+  req ##1 busy [*1:5] ##[1:$] gnt;
+endsequence
+
+//=================================================
+// Property Specification Layer
+//=================================================
+property boring_way_prop;
+  @ (posedge clk) 
+      req |-> boring_way_seq;
+endproperty
+
+property cool_way_prop;
+  
+  @ (posedge clk) 
+  //req |=> ##[0:$] gnt |-> busy;
+  //req[*0:$] |-> first_match(busy);
+  //$fell(req)|->$fell(busy) | $fell(gnt) ;
+  //req|=>~busy[*0:$] ##1 (gnt & ~busy);
+  //(~a & b & ~c)|=> ## [0: $] c ##[1:$] a;
+  //~a intersect b|=>##[0:$] c;
+  //~a & b|=>##[0:$] c[*5];
+  //first_match(a)|=>##1 b;
+  //(~a & b & ~c)##[1:$] c[*1:$]|=>a;
+  $past(a)==1;
+endproperty
+  
+  
+property test_bench_try;  
+  int tmp;
+  //@(posedge clk) ($rose(req),tmp = busy) |-> ##4 (busy == (tmp*tmp+1)) ##3 gnt[*3];
+  logic tmp_logic;
+  //@(posedge clk)(req==req, tmp_logic=req)|=>(gnt==tmp_logic);
+  @(posedge clk)(req, tmp_logic=1)|=>(gnt);
+  
+endproperty  
+  
+//=================================================
+// Assertion Directive Layer
+//=================================================
+  boring_way_assert : assert property (boring_way_prop)
+    					$display("good %t",$time) ;
+    					else $error("error hit");
+//cool_way_assert   : assert property (cool_way_prop);
+
+//=================================================
+// Generate input vectors
+//=================================================
+initial begin
+  req <= 0; busy <= 0;gnt <= 0;
+  @ (posedge clk);
+  req <= 1;
+  @ (posedge clk);
+  busy <= 1;
+  req  <= 0;
+  repeat(2) @ (posedge clk);
+  busy <= 0;
+  gnt <= 1;
+  @ (posedge clk);
+  gnt <= 0;
+  
+  
+  /*
+  // Now make the assertion fail
+  req <= 0; busy <= 0;gnt <= 0;
+  @ (posedge clk);
+  req <= 1;
+  @ (posedge clk);
+  busy <= 1;
+  req  <= 0;
+  repeat(3) @ (posedge clk);
+  busy <= 0;
+  gnt <= 1;
+  @ (posedge clk);
+  gnt <= 0;*/
+  #30 $finish;
+end
+
+  initial begin
+    $sample();
+    $dumpfile("repetition_assertion.vcd");
+    $dumpvars(1);   
+  end
+  
+endmodule
