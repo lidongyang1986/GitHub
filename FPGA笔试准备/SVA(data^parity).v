@@ -1,4 +1,4 @@
-/*
+
 module check_par(clk, parity, data);
 input clk, parity;
 input [31:0] data;
@@ -8,7 +8,7 @@ property p_check_par;
 endproperty
 a_check_par: assert property(p_check_par);
 endmodule
-  */
+  
 
 /*
 module dffChecker (clk, rst_, d, q);
