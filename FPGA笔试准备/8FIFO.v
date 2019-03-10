@@ -21,7 +21,7 @@ module sync_fifo1(
    parameter ASIC             = 1; 
    parameter FPGA             = 0;    
                  
-   parameter ALMOST_FULL_NUM  = 2;     //½«ÂúÖµÉèÖÃ×î¶à²»ÄÜ´óÓÚRAM_DEPTH
+   parameter ALMOST_FULL_NUM  = 2;     //å°†æ»¡å€¼è®¾ç½®æœ€å¤šä¸èƒ½å¤§äºRAM_DEPTH
                  
                  
     input                               clk             ;           
@@ -33,7 +33,7 @@ module sync_fifo1(
     output   reg                        full            ;           
     output   reg                        almost_full     ;           
     output   reg                        empty           ;           
-    output   reg  [ADDR_WIDTH:0]        data_count      ;  //data_count¼´×÷Îª¿ØÖÆ¿ÕÂúĞÅºÅÓÃÓÖ×÷ÎªÊä³öĞÅºÅÓÃ£¬±ÈµØÖ·Î»¿í¶àÒ»Î»  
+    output   reg  [ADDR_WIDTH:0]        data_count      ;  //data_countå³ä½œä¸ºæ§åˆ¶ç©ºæ»¡ä¿¡å·ç”¨åˆä½œä¸ºè¾“å‡ºä¿¡å·ç”¨ï¼Œæ¯”åœ°å€ä½å®½å¤šä¸€ä½  
     
     
     
@@ -48,20 +48,20 @@ module sync_fifo1(
         if (srst == 1'b0)    data_count <= {(ADDR_WIDTH+1){1'b0}};
         else if (wr_en == 1'b1 && rd_en == 1'b0) 
         begin
-            data_count <= data_count + 1'd1; //µ±FIFO½øĞĞĞ´µ«²»¶ÁÊ± Ôö¼Ó1
+            data_count <= data_count + 1'd1; //å½“FIFOè¿›è¡Œå†™ä½†ä¸è¯»æ—¶ å¢åŠ 1
         end
         else if (wr_en == 1'b0 && rd_en == 1'b1) 
         begin
-            data_count <= data_count - 1'd1; //µ±FIFO½øĞĞ¶Áµ«²»Ğ´Ê± ¼õ1 
+            data_count <= data_count - 1'd1; //å½“FIFOè¿›è¡Œè¯»ä½†ä¸å†™æ—¶ å‡1 
         end
-        else; //Èç¹ûFIFOÓÖ¶ÁÓÖĞ´»ò²»¶ÁÒ²²»Ğ´ Ôò¸Ã¼ÆÊıÆ÷²»±ä
+        else; //å¦‚æœFIFOåˆè¯»åˆå†™æˆ–ä¸è¯»ä¹Ÿä¸å†™ åˆ™è¯¥è®¡æ•°å™¨ä¸å˜
     end
     
     always@(*)
     begin        
         if ( (rd_en == 1'b0 && data_count == RAM_DEPTH ) || (wr_en == 1'b1 && data_count == (RAM_DEPTH-1) ))
         begin
-            full <= 1'b1; //Èç¹ûFIFO²»¶Á²¢ÇÒdata_countµÈÓÚFIFOµÄÉî¶ÈÊ±,»òÕßdata_countµÈÓÚ(data_count-1)²¢ÇÒĞ´Ê¹ÄÜÓĞĞ§Ê±Âú±êÖ¾Ó¦¸ÃÖÃ1 ÆäÓàÇé¿öÖÃÎª0
+            full <= 1'b1; //å¦‚æœFIFOä¸è¯»å¹¶ä¸”data_countç­‰äºFIFOçš„æ·±åº¦æ—¶,æˆ–è€…data_countç­‰äº(data_count-1)å¹¶ä¸”å†™ä½¿èƒ½æœ‰æ•ˆæ—¶æ»¡æ ‡å¿—åº”è¯¥ç½®1 å…¶ä½™æƒ…å†µç½®ä¸º0
         end
         else 
         begin
@@ -73,7 +73,7 @@ module sync_fifo1(
     begin
         if ((data_count == 0 ) || (rd_en == 1'b1 && data_count == 1  ) )
         begin
-            empty <= 1'b1; //µ±FIFOÖĞµÄdata_countµÈÓÚ0»òÕßµÈÓÚ1²¢ÇÒ¶ÁÓĞĞ§Ê± Empty¾ÍÓ¦ÖÃ1¶Á¿Õ
+            empty <= 1'b1; //å½“FIFOä¸­çš„data_countç­‰äº0æˆ–è€…ç­‰äº1å¹¶ä¸”è¯»æœ‰æ•ˆæ—¶ Emptyå°±åº”ç½®1è¯»ç©º
         end
         else
         begin
@@ -86,7 +86,7 @@ module sync_fifo1(
     begin
         if (data_count >  (RAM_DEPTH - ALMOST_FULL_NUM-2) )
         begin
-            almost_full <= 1'b1; //data_count´óÓÚRAMµÄÉî¶È¼õÈ¥ALMOST_FULL_NUMÊ±ÖÃÓĞĞ§£¬ALMOST_FULL_NUM¿ÉÅä
+            almost_full <= 1'b1; //data_countå¤§äºRAMçš„æ·±åº¦å‡å»ALMOST_FULL_NUMæ—¶ç½®æœ‰æ•ˆï¼ŒALMOST_FULL_NUMå¯é…
         end
         else 
         begin
