@@ -2,7 +2,7 @@ https://www.edaplayground.com/x/3Mie
 
 module traffic_light(rst_n,
                             clk,
-                            trigger, //´¥·¢ĞÅºÅ£¬Ê¹µÃ×´Ì¬»ú½øÈëÑ­»·
+                            trigger, //è§¦å‘ä¿¡å·ï¼Œä½¿å¾—çŠ¶æ€æœºè¿›å…¥å¾ªç¯
                             light1,
                             light2
                                  );
@@ -10,20 +10,20 @@ input rst_n;
 input clk;
 input trigger;
 
-output [3:0] light1;   //4bit·Ö±ğ¶ÔÓ¦ÂÌ¡¢»Æ¡¢×ó¡¢ºìµÆ
+output [3:0] light1;   //4bitåˆ†åˆ«å¯¹åº”ç»¿ã€é»„ã€å·¦ã€çº¢ç¯
 output [3:0] light2;
 
-//µÆÁÁÊ±¼ä
-parameter G1_T = 7'd40;  //·½Ïò1µÄÁÁµÆÊ±¼ä
+//ç¯äº®æ—¶é—´
+parameter G1_T = 7'd40;  //æ–¹å‘1çš„äº®ç¯æ—¶é—´
 parameter Y1_T = 7'd5;
 parameter L1_T = 7'd15;
 
-parameter G2_T = 7'd30;    //·½Ïò2µÄÁÁµÆÊ±¼ä
+parameter G2_T = 7'd30;    //æ–¹å‘2çš„äº®ç¯æ—¶é—´
 parameter Y2_T = 7'd5;
 parameter L2_T = 7'd15;
 
-//×´Ì¬±àÂë
-parameter IDLE = 4'd0;    //´Ë´¦ÎªÁË·½±ã²ÉÓÃ¼òµ¥µÄbinary±àÂë£¬¿ÉÓÃone-hot»ògrayÌá¸ßĞÔÄÜ
+//çŠ¶æ€ç¼–ç 
+parameter IDLE = 4'd0;    //æ­¤å¤„ä¸ºäº†æ–¹ä¾¿é‡‡ç”¨ç®€å•çš„binaryç¼–ç ï¼Œå¯ç”¨one-hotæˆ–grayæé«˜æ€§èƒ½
 parameter G1 = 4'd1;
 parameter Y1_1 = 4'd2;
 parameter L1 = 4'd3;
@@ -49,14 +49,14 @@ reg [6:0] light_t;
 reg change;
 reg start;
 
-//×´Ì¬¼Ä´æ£¬Ê±ĞòÂß¼­
+//çŠ¶æ€å¯„å­˜ï¼Œæ—¶åºé€»è¾‘
 always@(posedge clk)
     if(!rst_n)
         cur_state <= IDLE;
     else
         cur_state <= nxt_state;
 
-//×´Ì¬×ª»»£¬×éºÏÂß¼­        
+//çŠ¶æ€è½¬æ¢ï¼Œç»„åˆé€»è¾‘        
 always@(*)
     if(!rst_n)
         begin
@@ -67,10 +67,10 @@ always@(*)
         begin
             case(cur_state)
                 IDLE : //if(change) 
-                        if(trigger)  //×´Ì¬»úÍ¨¹ıtrigger½øÈë×´Ì¬Ñ­»·
+                        if(trigger)  //çŠ¶æ€æœºé€šè¿‡triggerè¿›å…¥çŠ¶æ€å¾ªç¯
                             begin
-                                //start <= 1'b1;  //startÓë¼ÆÊıÖµlight_t_tmpÊÇÍ¬²½µÄ£¬Òò´ËÒ»Í¬Ğ´ÔÚÊä³ö¿ØÖÆÖĞ 
-                                nxt_state = G1;  //×´Ì¬±ä»»ÓÉ×éºÏÂß¼­ÊµÏÖ£¬²ÉÓÃ×èÈû¸³Öµ¼´=£¬¶ø·Ç<=
+                                //start <= 1'b1;  //startä¸è®¡æ•°å€¼light_t_tmpæ˜¯åŒæ­¥çš„ï¼Œå› æ­¤ä¸€åŒå†™åœ¨è¾“å‡ºæ§åˆ¶ä¸­ 
+                                nxt_state = G1;  //çŠ¶æ€å˜æ¢ç”±ç»„åˆé€»è¾‘å®ç°ï¼Œé‡‡ç”¨é˜»å¡èµ‹å€¼å³=ï¼Œè€Œé<=
                             end
                 G1   : if(trigger)  
                             begin
@@ -164,9 +164,9 @@ always@(*)
             endcase
         end        
         
-//Êä³ö¿ØÖÆ£¬×éºÏÂß¼­
-//startÓë¼ÆÊıÖµlight_t_tmpÊÇÍ¬²½µÄ£¬Òò´ËÒ»Í¬Ğ´ÔÚÊä³ö¿ØÖÆÖĞ 
-//always@(posedge clk)   //Êä³öÎª×éºÏÂß¼­£¬Òò´Ë²»ÔÚclkÏÂ¶¯×÷
+//è¾“å‡ºæ§åˆ¶ï¼Œç»„åˆé€»è¾‘
+//startä¸è®¡æ•°å€¼light_t_tmpæ˜¯åŒæ­¥çš„ï¼Œå› æ­¤ä¸€åŒå†™åœ¨è¾“å‡ºæ§åˆ¶ä¸­ 
+//always@(posedge clk)   //è¾“å‡ºä¸ºç»„åˆé€»è¾‘ï¼Œå› æ­¤ä¸åœ¨clkä¸‹åŠ¨ä½œ
 always@(*)
     if(!rst_n)
         begin
@@ -226,8 +226,8 @@ always@(*)
                      end
         endcase
 
-//µÆÁÁÊ±¼äµ¹¼ÆÊ±
-//Ê±ĞòÂß¼­£¬ÒªÔÚclkÊ±ÖÓÏÂ¶¯×÷
+//ç¯äº®æ—¶é—´å€’è®¡æ—¶
+//æ—¶åºé€»è¾‘ï¼Œè¦åœ¨clkæ—¶é’Ÿä¸‹åŠ¨ä½œ
 always@(posedge clk)
     if(!rst_n)
         begin
@@ -243,15 +243,15 @@ always@(posedge clk)
                 light_t <= light_t - 1'b1;
             end
             
-//ÔÚlight_t¼õµ½2Ê±£¬ÖÃÎªchangeĞÅºÅ
-//ÓÃ×éºÏÂß¼­
+//åœ¨light_tå‡åˆ°2æ—¶ï¼Œç½®ä¸ºchangeä¿¡å·
+//ç”¨ç»„åˆé€»è¾‘
 always@(*)
     if(!rst_n)
         change <= 1'b0;  
     else if(light_t == 4'd2)
         change <= 1'b1;
         
-//Êä³ö¼Ä´æ    
+//è¾“å‡ºå¯„å­˜    
 always@(posedge clk)
     if(!rst_n)
         begin
@@ -264,14 +264,14 @@ always@(posedge clk)
             light2 <= light2_tmp;
         end
         
-//ÏÂÃæÊÇµ÷ÊÔ¹ı³ÌÖĞ¶ÔchangeÒÔ¼°startµÄ¿ØÖÆ    
-//ÒòÎªÊ¹ÓÃÁËÊ±ĞòÂß¼­£¬µ¼ÖÂ¸÷ÖÖ´íÎó
+//ä¸‹é¢æ˜¯è°ƒè¯•è¿‡ç¨‹ä¸­å¯¹changeä»¥åŠstartçš„æ§åˆ¶    
+//å› ä¸ºä½¿ç”¨äº†æ—¶åºé€»è¾‘ï¼Œå¯¼è‡´å„ç§é”™è¯¯
 /*
 always@(posedge clk)
     if(!rst_n)
         begin
             light_t <= 7'd0;
-            //change <= 1'b0;  //¸´Î»£¬¿ªÊ¼×´Ì¬×ª»»
+            //change <= 1'b0;  //å¤ä½ï¼Œå¼€å§‹çŠ¶æ€è½¬æ¢
         end
     else if(start)
                 begin
@@ -292,7 +292,7 @@ always@(posedge clk)
 /*            
 always@(*)
     if(!rst_n)
-        change = 1'b0;  //¸´Î»£¬¿ªÊ¼×´Ì¬×ª»»
+        change = 1'b0;  //å¤ä½ï¼Œå¼€å§‹çŠ¶æ€è½¬æ¢
     else if(start)
             change = 1'b0;
         else if(light_t == 4'd1)
