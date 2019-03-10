@@ -1,5 +1,5 @@
 ==========================================================
-Ê±ÖÓÔ¼Êø£º
+æ—¶é’Ÿçº¦æŸï¼š
 create_clock -name <clock_name> -period <period> [get_ports <clock port>]		//
 create_clock -period <period> -waveform {<rise_time> <fall_time>} [get_ports <input_port>]
 
@@ -11,7 +11,7 @@ create_generated_clock -name <generated_clock_name> \
                        <pin_or_port>
 
 set_clock_groups -asynchronous -group <clock_name_1> -group <clock_name_2>		//# Set two clocks as asynchronous
-set_clock_groups -physically_exclusive -group <clock_name_1> -group <clock_name_2>	//ÎïÀí²»Ïà¹Ø
+set_clock_groups -physically_exclusive -group <clock_name_1> -group <clock_name_2>	//ç‰©ç†ä¸ç›¸å…³
 
 
 set_clock_uncertainty -setup \							//# Add uncertainty on timing paths from clock0 to clock1 for setup analysis only
@@ -21,7 +21,7 @@ set_clock_uncertainty -setup \							//# Add uncertainty on timing paths from cl
 
 
 ==========================================================
-ÊäÈëÔ¼Êø1£º
+è¾“å…¥çº¦æŸ1ï¼š
 # The delay value is the delay external to the FPGA
 # UCF Example: OFFSET = IN 4ns VALID 1.5ns BEFORE clk, assume period is 10ns
 # The XDC max delay is 6 and min delay is 2.5
@@ -31,7 +31,7 @@ set_input_delay <min delay> -min -clock [get_clocks <clock>] [get_ports <ports>]
 
 
 
-ÊäÈëÔ¼Êø2£º
+è¾“å…¥çº¦æŸ2ï¼š
 # The delay value is the delay external to the FPGA
 # UCF Example: OFFSET = IN 6ns BEFORE clock; assume period is 10ns
 # The XDC delay is 10 - 6 = 4ns
@@ -39,7 +39,7 @@ set_input_delay <min delay> -min -clock [get_clocks <clock>] [get_ports <ports>]
 set_input_delay <delay> -clock [get_clocks <clock>] [get_ports <ports>]
 
 
-ÊäÈëÔ¼Êø3£ºË«ÑØ£º
+è¾“å…¥çº¦æŸ3ï¼šåŒæ²¿ï¼š
 set input_clock         <clock_name>;      # Name of input clock
 set input_clock_period  <period_value>;    # Period of input clock (full-period)
 set dv_bre              0.000;             # Data valid before the rising clock edge
@@ -62,7 +62,7 @@ set_input_delay -clock $input_clock -min $dv_afe                                
 
 
 ==========================================================
-Êä³öÔ¼Êø£º
+è¾“å‡ºçº¦æŸï¼š
 set_output_delay -clock [get_clocks DA_WRT_0] -rise -min -add_delay -1.500 [get_ports {DA_DATA_0[*]}]
 set_output_delay -clock [get_clocks DA_WRT_0] -rise -max -add_delay 2.000 [get_ports {DA_DATA_0[*]}]
 
@@ -97,7 +97,7 @@ set_output_delay -clock $destination_clock -min [expr $trce_dly_min - $thd] [get
 
 
 ==========================================================
-¶àÖÜÆÚÂ·¾¶ºÍ¼ÙÂ·¾¶£º
+å¤šå‘¨æœŸè·¯å¾„å’Œå‡è·¯å¾„ï¼š
 set_false_path -from <startpoints> -to <endpoints>
 set_multicycle_path <num cycles> -from <startpoints> -to <endpoints>
 set_multicycle_path -hold <num cycles> -from <startpoints> -to <endpoints>
@@ -113,7 +113,7 @@ set_max_delay <delay> -from <startpoints> -to <endpoints>
 
 
 ==========================================================
-SAMSUNG AIÌâÄ¿2:
+SAMSUNG AIé¢˜ç›®2:
 always@(posedge clk)begin
 clk1<=~clk1;
 clk1_reg<=clk1;
@@ -129,7 +129,7 @@ end
 
 
 ==========================================================
-SAMSUNG AIÌâÄ¿3:
+SAMSUNG AIé¢˜ç›®3:
 3.Module A is based on a 1MHz (clk1)
 Module B is based on a 333 KHz (clk2)
 There is a signal sent from module A to module B.
