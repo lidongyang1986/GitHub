@@ -16,7 +16,7 @@ module associative_array;
       index=index+4;
     end
 
-    //num() ¨CAssociative array method
+    //num() Â¨CAssociative array method
     $display("\tNumber of entries in a_array is %0d",a_array.num());
     $display("--- Associative array a_array entries and Values are ---");
     foreach(a_array[i]) $display("\ta_array[%0d] \t = %0d",i,a_array[i]);
