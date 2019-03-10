@@ -30,8 +30,8 @@ module RAM(
      dout
      );
 
-     parameter   DWIDTH = 16; //数据宽度，请根据实际情况修改
-     parameter   AWIDTH = 4;  //地址宽度，请根据实际情况修改
+     parameter   DWIDTH = 16; //鏁版嵁瀹藉害锛岃鏍规嵁瀹為檯鎯呭喌淇敼
+     parameter   AWIDTH = 4;  //鍦板潃瀹藉害锛岃鏍规嵁瀹為檯鎯呭喌淇敼
 
      input  clk;
      input  wen;
