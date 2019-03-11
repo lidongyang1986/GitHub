@@ -68,7 +68,9 @@ e.g.
 priority case (...)
 ...
 endcase
-
+  
+a priority case will cause simulators to add run-time checks that will report a warning for the following condition:
+1. If the case expression does not match any of the case item expressions, and there is no default case 
 
   
   
