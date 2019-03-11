@@ -91,7 +91,7 @@ endcase
 unique case causes a simulator to add run-time checks that will report a warning if any of the following conditions are true:
 1. More than one case item matches the case expression 
 2. No case item matches the case expression, and there is no default case   
-  
+Back to the example, because of the unique keyword, synthesis will remove the priority logic.  
   
   /****************************************************/
   https://www.verilogpro.com/systemverilog-unique-priority/
