@@ -1,3 +1,6 @@
+//http://referencedesigner.com/tutorials/verilogexamples/verilog_ex_08.php
+
+
 module clk_divn (clk,reset, clk_out);
  
 input clk;
