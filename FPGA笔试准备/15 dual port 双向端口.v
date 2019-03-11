@@ -11,8 +11,12 @@ output [7:0] outp;
 inout [7:0] bidir; 
 reg [7:0] a;
 reg [7:0] b;
+  
+  
 assign bidir = oe ? a : 8'bZ ;
 assign outp = b;
+  
+  
 // Always Construct
 always @ (posedge clk)
 begin
