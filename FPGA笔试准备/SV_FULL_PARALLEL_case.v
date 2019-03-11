@@ -86,3 +86,12 @@ unique case (...)
 ...
 default: ...
 endcase
+  
+  
+  
+  
+  
+  /****************************************************/
+  https://www.verilogpro.com/systemverilog-unique-priority/
+  One of the easiest ways to avoid these unwanted latches is by making a default assignment to the outputs before the case statement.
+  
