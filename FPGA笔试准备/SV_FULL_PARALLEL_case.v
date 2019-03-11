@@ -25,9 +25,14 @@ https://asic-interview.blogspot.com/2010/04/systemverilog-interview-question-5.h
 
 
 e.g. Full case, sel=2'b11 will be covered by default statement.
-     The x-assignment will also be treated as a don'tcare for synthesis, which may allow the synthesis tool to further optimize the synthesized design. It's the potentially causing a mismatch to occur between simulation and synthesis. To insure that the pre-synthesis and post-synthesis simulations match, the case default could assign the y-output to either a
-predetermined constant value, or to one of the other multiplexer input values
-
+The x-assignment will also be treated as a don'tcare for synthesis, 
+which may allow the synthesis tool to further optimize the synthesized design. 
+       
+It's the potentially causing a mismatch to occur between simulation and synthesis. 
+To insure that the pre-synthesis and post-synthesis simulations match, 
+the case default could assign the y-output to either a predetermined constant value, 
+or to one of the other multiplexer input values
+       
 module mux3c
 (output reg y,
 input [1:0] sel,
