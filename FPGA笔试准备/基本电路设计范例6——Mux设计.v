@@ -1,3 +1,11 @@
+module Mux2_1(out,cntrl,in1,in2);
+input cntrl,in1,in2;
+output out;
+assign out = cntrl ? in1 : in2;
+endmodule
+
+
+
 module mux_4to1_assign ( input [3:0] a,                 // 4-bit input called a
                          input [3:0] b,                 // 4-bit input called b
                          input [3:0] c,                 // 4-bit input called c
