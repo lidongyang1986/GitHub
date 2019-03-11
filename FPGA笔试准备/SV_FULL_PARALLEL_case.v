@@ -32,7 +32,7 @@ It's the potentially causing a mismatch to occur between simulation and synthesi
 To insure that the pre-synthesis and post-synthesis simulations match, 
 the case default could assign the y-output to either a predetermined constant value, 
 or to one of the other multiplexer input values
-       
+      
 module mux3c
 (output reg y,
 input [1:0] sel,
@@ -45,7 +45,23 @@ case (sel)
 default: y = 1'bx;
 endcase
 endmodule
-
+  
+  
+  
+  
+///////////////////////////////////////////////////////////////
+  
+Another thing to note is that, some values do not match. For example there is no match for 3'b010. 
+In such case the previous value is preserved.  
+  
+casez  (sel)
+3'bl0l : A  =  l'bl ;
+3'bl??:  A  =  l'bO;
+3'bOOO:  A  =  l'bl;
+endcase 
+  
+  
+  
 FULL
 SystemVerilog use priority modified case statement to solve the full case problem:
 e.g.
