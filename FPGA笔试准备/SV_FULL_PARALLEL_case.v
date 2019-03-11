@@ -72,14 +72,12 @@ endcase
 
   
   
-  
-  
-  
-  
-  
-  
 
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+//http://referencedesigner.com/tutorials/verilog/verilog_21.php
+From synthesis point of view, a parallel case statement infers a multiplexing routing network.
+A non-parallel case statement usually infers a priority routing network.   
+  
 PARALLEL
 The unique keyword shall cause the simulator to report a run-time error if a case expression is ever found to match more than one of the case items. In essence, the unique
 case statement is a "safe" parallel_case case statement.
