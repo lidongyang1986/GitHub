@@ -1,5 +1,8 @@
 http://fpgacpu.ca/fpga/index.html
 https://www.fpga4fun.com
+http://referencedesigner.com/tutorials/verilog/verilog_quiz.php?n=9
+
+
 
 https://www.edaplayground.com/playgrounds/user/94940?searchString=%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E8%8C%83%E4%BE%8B&language=&simulator=&methodologies=&_libraries=on&_easierUVM=on&_curated=on&_csrf=b4a93985-99bd-4587-8210-3a37c0f1388d
 
