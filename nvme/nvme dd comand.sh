@@ -1,0 +1,7 @@
+:%s/\n//g
+
+ sudo dd if=/dev/nvme0n1 of=outputdata.txt bs=4096 count=1 iflag=direct skip=1
+ sudo dd if=inputdata.txt of=/dev/nvme0n1 bs=4096 count=1 oflag=direct seek=1
+ sudo dd if=abc0 of=/dev/nvme0n1 bs=4096 count=1 oflag=direct seek=1
+
+ chmod +x test_control_shellq
