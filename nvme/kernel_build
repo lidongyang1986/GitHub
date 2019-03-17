@@ -1,0 +1,88 @@
+///////////////////
+build kernel
+///////////////////
+
+1.for menuconfig:
+sudo apt-get install libncurses5-dev
+
+sudo make menuconfig
+
+
+sudo modprobe nvme
+
+
+lsmod | nvme
+
+
+lsmod |  grep nvme
+
+
+cd /usr/src/linux-headers-3.13.0-32/include/
+
+
+2. copy old kernel config to new kernel config:
+cd linux-3.15.8/
+cp /boot/config-3.13.0-32-generic .config
+
+3.0 make
+
+3. make modules_install -j4
+
+4. make install
+
+5. reboot
+
+///////////////
+build module
+///////////////
+
+1. check if module exist: 
+lsmod | grep nvme
+
+2. compile driver:
+cd /usr/src/linux-3.15.8
+sudo make SUBDIRS=drivers/block
+
+3. setup driver: 
+sudo insmod drivers/block/nvme.ko 
+sudo modprobe drivers/block/nvme.ko
+
+4. remove driver:
+sudo modprobe -r nvme
+
+
+
+
+//////
+update_bootup nvme.ko
+//////
+0. remove nvme module from menuconfig
+ 	make menuconfig
+
+1. copy .ko to lib/modules
+	cp /usr/src/linux-3.14.57/drivers/block/nvme.ko /lib/modules/3.14.57/kernel/drivers/block/
+
+2. update database
+	sudo depmod -a
+	
+3. insmod
+
+4. sudo update-initramfs 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-u
