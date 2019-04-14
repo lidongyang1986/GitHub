@@ -23,5 +23,5 @@ full=(wrcnt[3]^rdcnt[3])&(wrcnt[2:0]==rdcnt[2:0]);
 
 
 3. ILA实际操作
-xcl文件database
+xci文件database
 https://www.so-logic.net/documents/knowledge/tutorial/Basic_FPGA_Tutorial_VHDL/sec_debugging_design.html
