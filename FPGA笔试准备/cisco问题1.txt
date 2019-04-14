@@ -1,8 +1,8 @@
-1. ¼Ó·¨µçÂ·Ì«´ó£º 
+1. åŠ æ³•ç”µè·¯å¤ªå¤§ï¼š 
 always@(posedge clk)
 c[31:0]=a[31:0]+b[31:0];
 
-¸Ä³É£º
+æ”¹æˆï¼š
 assign c[16:0]=a[15:0]+b[15:0];
 
 always@(posedge clk)
@@ -10,18 +10,18 @@ d[32:16]=a[32:16]+b[32:16];
 c={c[32:16]+c[16], c[15:0]};
 
 
-2. Òì²½fifo:
-fullÊÇwrclk
-emptyÊÇrdclk
+2. å¼‚æ­¥fifo:
+fullæ˜¯wrclk
+emptyæ˜¯rdclk
 
 always@(posedge clk)
 full=(wrcnt[3]^rdcnt[3])&(wrcnt[2:0]==rdcnt[2:0]);
 
-Á½¸öÎÊÌâ£¬
+ä¸¤ä¸ªé—®é¢˜ï¼Œ
 1. gray code
-2. fullÒªÌáÇ°Ò»¸öÖÜÆÚ±ÜÃâĞ´Âú
+2. fullè¦æå‰ä¸€ä¸ªå‘¨æœŸé¿å…å†™æ»¡
 
 
-3. ILAÊµ¼Ê²Ù×÷
-xclÎÄ¼şdatabase
-
+3. ILAå®é™…æ“ä½œ
+xclæ–‡ä»¶database
+https://www.so-logic.net/documents/knowledge/tutorial/Basic_FPGA_Tutorial_VHDL/sec_debugging_design.html
