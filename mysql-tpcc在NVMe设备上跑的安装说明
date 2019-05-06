@@ -1,0 +1,77 @@
+cp -R /var/lib/mysql /home/lidongyang/Desktop/tpcc-mysql-master/src/
+
+sudo apt-get update
+sudo apt-get install mysql-server
+sudo apt-get install libmysqlclient-dev
+
+
+service mysql status
+
+
+
+instruction:
+
+https://www.percona.com/blog/2013/07/01/tpcc-mysql-simple-usage-steps-and-how-to-build-graphs-with-gnuplot/
+
+
+
+mysql -u root -p -e "CREATE DATABASE tpcc2;"
+mysql -u root -p tpcc2 < create_table.sql
+mysql -u root -p tpcc2 < add_fkey_idx.sql
+
+./tpcc_load -h127.0.0.1 -d tpcc2 -u root -p "ldy1986" -w 1
+
+./tpcc_start -h127.0.0.1 -P3306 -dtpcc2 -uroot -p "ldy1986" -w1 -c32 -r10 -l20
+
+
+
+*****************************
+cp -r /var/lib/mysql/* /media/lidongyang/SSD
+mount /dev/nvme0n1 /var/lib/mysql
+
+
+
+
+*******************************
+wips all SSD content:
+
+wipefs --all /dev/nvme0n1 
+
+mkfs /dev/nvme0n1
+
+rmmod nvme
+
+insmod nvme-core.ko
+
+
+
+
+
+***********************************tpcc on nvme ok**********************************
+注意要service mysql stop		!!!!
+1. umount /dev/nvme0n1
+2. wipefs --all /dev/nvme0n1 
+3. rmmod nvme
+4. insmod nvme-core.ko
+5. mkfs /dev/nvme0n1
+6. cp -r /var/lib/mysql/* /media/lidongyang/7f76b4c8-36aa-4fa2-adc3-34023018420e/
+7. mount /dev/nvme0n1 /var/lib/mysql
+
+
+注意要service mysql start		!!!!!
+8. chown -R mysql:mysql /var/lib/mysql
+9. chown -R mysql:root /var/lib/mysql/mysql
+10. ./tpcc_start -h127.0.0.1 -P3306 -dtpcc2 -uroot -p "ldy1986" -w1 -c32 -r10 -l20
+
+
+
+
+
+
+
+
+
+
+
+
+
